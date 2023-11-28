@@ -1,5 +1,14 @@
+import React from 'react';
+import Header from './components/Layout/Header/Header';
+import Description from './components/Layout/Description/Description';
+
 function App() {
-  return <h1>Hey world!</h1>;
+  return (
+    <React.Fragment>
+      <Header />
+      <Description />
+    </React.Fragment>
+  );
 }
 
 export default App;

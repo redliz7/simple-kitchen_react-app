@@ -1,0 +1,20 @@
+.description {
+}
+.description__wrap {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 10px;
+}
+
+.description-image {
+  height: 400px;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.description-image img {
+  width: 120%;
+  height: 120%;
+  object-fit: cover;
+  transform: rotateZ(-6deg) translateY(-15rem) translateX(-1rem);
+}
