@@ -1,0 +1,12 @@
+.input label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.input input {
+  padding: 0 10px;
+  width: 50px;
+  height: 30px;
+  font-weight: bold;
+  border: 1px solid silver;
+  border-radius: 5px;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Description.module.css';
 import bgImage from '../../../assets/desc_bg_img.jpg';
+import Card from '../../UI/Card';
 
 const Description = () => {
   return (

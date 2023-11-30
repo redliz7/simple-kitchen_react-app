@@ -1,0 +1,23 @@
+.meal__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.button:active {
+  background-color: #231c12;
+}
+
+.button {
+  margin-top: 15px;
+  cursor: pointer;
+  font: inherit;
+  border: none;
+  background-color: #644a2a;
+  color: white;
+  height: 35px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 25px;
+  font-weight: bold;
+}

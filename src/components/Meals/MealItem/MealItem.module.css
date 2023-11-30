@@ -1,0 +1,17 @@
+.meal__content {
+}
+.meal__title {
+  font-size: 20px;
+  font-weight: bold;
+}
+.meal__desc {
+  margin-top: 10px;
+  font-style: italic;
+  font-weight: 500;
+}
+.meal__price {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #644a2a;
+}
