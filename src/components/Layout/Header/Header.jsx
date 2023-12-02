@@ -9,7 +9,7 @@ const Header = (props) => {
         <div className={styles.header__wrap}>
           <div className={styles.header__logo}>Простая Кухня</div>
           <div className={styles.header__wrap_cart}>
-            <HeaderCartButton />
+            <HeaderCartButton onClick={props.onShowCart} />
           </div>
         </div>
       </header>

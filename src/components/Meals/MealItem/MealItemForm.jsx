@@ -1,9 +1,16 @@
+import React, { useState } from 'react';
 import Input from '../../UI/Input';
 import styles from './MealItemForm.module.css';
 
 const MealItemForm = (props) => {
+  const [addToCart, setAddToCart] = useState([{}]);
+
+  const mealItemFormHandler = (e) => {
+    e.preventDefault();
+  };
+
   return (
-    <form className={styles.meal__form}>
+    <form className={styles.meal__form} onSubmit={mealItemFormHandler}>
       <div className={styles.meal__amount}>
         <Input
           label="Количетсво"
