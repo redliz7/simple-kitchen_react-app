@@ -3,8 +3,6 @@ import Input from '../../UI/Input';
 import styles from './MealItemForm.module.css';
 
 const MealItemForm = (props) => {
-  const [addToCart, setAddToCart] = useState([{}]);
-
   const mealItemFormHandler = (e) => {
     e.preventDefault();
   };

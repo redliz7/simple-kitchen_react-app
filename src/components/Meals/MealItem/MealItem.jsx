@@ -10,7 +10,12 @@ const MealItem = (props) => {
         <div className={styles.meal__price}> ${props.price}</div>
       </div>
 
-      <MealItemForm id={props.id} />
+      <MealItemForm
+        id={props.id}
+        title={props.name}
+        consistency={props.description}
+        price={props.price}
+      />
     </li>
   );
 };
