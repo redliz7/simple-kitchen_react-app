@@ -1,17 +1,33 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Input from '../../UI/Input';
 import styles from './MealItemForm.module.css';
 
 const MealItemForm = (props) => {
-  const mealItemFormHandler = (e) => {
+  const [isAmountValid, setIsAmountValid] = useState(true);
+  const amountImputRef = useRef();
+
+  const sumbitHandler = (e) => {
     e.preventDefault();
+
+    const inputAmount = amountImputRef.current.value;
+    if (
+      inputAmount.trim().length === 0 ||
+      +inputAmount < 1 ||
+      +inputAmount > 10
+    ) {
+      setIsAmountValid(false);
+      return;
+    }
+
+    props.onAddToCart(+inputAmount);
   };
 
   return (
-    <form className={styles.meal__form} onSubmit={mealItemFormHandler}>
+    <form className={styles.meal__form} onSubmit={sumbitHandler}>
       <div className={styles.meal__amount}>
         <Input
-          label="Количетсво"
+          ref={amountImputRef}
+          label="Количество"
           input={{
             id: props.id,
             type: 'number',
@@ -22,6 +38,7 @@ const MealItemForm = (props) => {
         />
       </div>
       <button className={styles.button}>Добавить</button>
+      {!isAmountValid && <p>Пожалуйста введите количество от 1 до 10.</p>}
     </form>
   );
 };
