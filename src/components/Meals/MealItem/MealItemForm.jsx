@@ -1,10 +1,13 @@
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import Input from '../../UI/Input';
 import styles from './MealItemForm.module.css';
+import CartContext from '../../../store/cart-context';
 
 const MealItemForm = (props) => {
   const [isAmountValid, setIsAmountValid] = useState(true);
   const amountImputRef = useRef();
+
+  const cartContext = useContext(CartContext);
 
   const sumbitHandler = (e) => {
     e.preventDefault();
