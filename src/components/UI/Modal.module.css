@@ -11,9 +11,10 @@
 
 .modal {
   position: fixed;
-  bottom: 50%;
+  top: 20%;
   left: 50%;
   width: 90%;
+  max-height: 500px;
   transform: translateX(-50%);
   background-color: white;
   padding: 1rem;
