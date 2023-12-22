@@ -65,8 +65,10 @@ import styles from './MealList.module.css';
 
 const initialMealsState = {
   meals: [],
+  massageError: '',
   isLoading: false,
   isEmpty: true,
+  isError: false,
 };
 
 const mealStateReducer = (state, action) => {
@@ -76,8 +78,17 @@ const mealStateReducer = (state, action) => {
   if (action.type === 'LOADED') {
     return { meals: action.value, isLoading: false, isEmpty: false };
   }
+  if (action.type === 'ERROR') {
+    return {
+      meals: [],
+      massageError: action.massageError,
+      isError: true,
+      isLoading: false,
+      isEmpty: false,
+    };
+  }
   if (action.type === 'EMPTY') {
-    return { meals: [], isLoading: false, isEmpty: true };
+    return { meals: [], isLoading: false, isError: false, isEmpty: true };
   }
   return state;
 };
@@ -115,11 +126,14 @@ const MealList = () => {
         }
         setTimeout(() => {
           if (mealsArray.length === 0) {
-            dispatchAction({ type: 'EMPTY', value: mealsArray });
+            console.log('object');
+            dispatchAction({ type: 'EMPTY' });
           }
-        }, 2000);
-      } catch (error) {
-        console.error(error);
+        }, 5000);
+      } catch (err) {
+        console.error('Не удалось получить блюда с сервера:', err);
+
+        dispatchAction({ type: 'ERROR', massageError: err.message });
       }
     };
 
@@ -127,7 +141,9 @@ const MealList = () => {
   }, []);
 
   const isLoading = mealsState.isLoading;
+  const isError = mealsState.isError;
   const isEmpty = mealsState.isEmpty;
+
   const mealList = mealsState.meals.map((meal) => (
     <MealItem
       key={meal.id}
@@ -142,7 +158,10 @@ const MealList = () => {
     <section className={styles.meals}>
       <Card>
         {(isLoading && <h2 className={styles['load-empty']}>Загрузка...</h2>) ||
-          (isEmpty && <h2 className={styles['load-empty']}>Список пуст</h2>)}
+          (isError && (
+            <h3 className={styles.error}>{mealsState.massageError}</h3>
+          )) ||
+          (isEmpty && <h2 className={styles['load-empty']}>Пусто!</h2>)}
         {!isLoading && <ul className={styles.meals__wrap}>{mealList}</ul>}
       </Card>
     </section>

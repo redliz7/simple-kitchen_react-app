@@ -42,6 +42,11 @@
   width: 800px;
   text-align: center;
 }
+.error {
+  width: 800px;
+  text-align: center;
+  color: red;
+}
 
 @keyframes meals-appear {
   from {
