@@ -34,8 +34,19 @@
   animation: meals-appear 1s ease-out forwards;
   border-bottom: 1px solid silver;
 }
+
 .meals li:last-child {
   border-bottom: 0px;
+}
+
+.load-empty {
+  width: 800px;
+  text-align: center;
+}
+.error {
+  width: 800px;
+  text-align: center;
+  color: red;
 }
 
 @keyframes meals-appear {
