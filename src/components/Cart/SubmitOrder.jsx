@@ -1,5 +1,6 @@
 import style from './SubmitOrder.module.css';
 import { useRef, useState } from 'react';
+import React from 'react';
 
 const isInputValid = (inputValue) => inputValue.trim() !== '';
 
@@ -18,11 +19,11 @@ const SubmitOreder = (props) => {
     e.preventDefault();
 
     const enteredName = nameInputRef.current.value;
-    const enteredCite = cityInputRef.current.value;
+    const enteredCity = cityInputRef.current.value;
     const enteredAddress = addressInputRef.current.value;
 
     const isEnteredNameValid = isInputValid(enteredName);
-    const isEnteredCityValid = isInputValid(enteredCite);
+    const isEnteredCityValid = isInputValid(enteredCity);
     const isEnteredAddressValid = isInputValid(enteredAddress);
 
     setFormValidity({
@@ -37,6 +38,13 @@ const SubmitOreder = (props) => {
     if (!isFormValid) {
       return;
     }
+
+    // Sending user data to the server
+    props.onSubmit({
+      name: enteredName,
+      city: enteredCity,
+      address: enteredAddress,
+    });
   };
 
   const nameInputClasses = `${style.control} ${
@@ -50,29 +58,31 @@ const SubmitOreder = (props) => {
   }`;
 
   return (
-    <form className={style.form} onSubmit={confirmOrderHandler}>
-      <div className={nameInputClasses}>
-        <label htmlFor="name">Имя</label>
-        <input type="text" id="name" ref={nameInputRef} />
-        {!formValidity.name && <p>Введите имя</p>}
-      </div>
-      <div className={cityInputClasses}>
-        <label htmlFor="city">Город</label>
-        <input type="text" id="city" ref={cityInputRef} />
-        {!formValidity.city && <p>Введите название города</p>}
-      </div>
-      <div className={addressInputClasses}>
-        <label htmlFor="address">Адрес</label>
-        <input type="text" id="address" ref={addressInputRef} />
-        {!formValidity.address && <p>Введите адрес</p>}
-      </div>
-      <div className={style.actions}>
-        <button className={style.submit}>Подтвердите Заказ</button>
-        <button type="button" onClick={props.onCancel}>
-          Отмена
-        </button>
-      </div>
-    </form>
+    <React.Fragment>
+      <form className={style.form} onSubmit={confirmOrderHandler}>
+        <div className={nameInputClasses}>
+          <label htmlFor="name">Имя</label>
+          <input type="text" id="name" ref={nameInputRef} />
+          {!formValidity.name && <p>Введите имя</p>}
+        </div>
+        <div className={cityInputClasses}>
+          <label htmlFor="city">Город</label>
+          <input type="text" id="city" ref={cityInputRef} />
+          {!formValidity.city && <p>Введите название города</p>}
+        </div>
+        <div className={addressInputClasses}>
+          <label htmlFor="address">Адрес</label>
+          <input type="text" id="address" ref={addressInputRef} />
+          {!formValidity.address && <p>Введите адрес</p>}
+        </div>
+        <div className={style.actions}>
+          <button className={style.submit}>Подтвердите Заказ</button>
+          <button type="button" onClick={props.onCancel}>
+            Отмена
+          </button>
+        </div>
+      </form>
+    </React.Fragment>
   );
 };
 
